@@ -52,6 +52,7 @@ function drawPowerUps() {
 function activatePowerUp() {
     isPoweredUp = true;
     powerUpTime = Date.now();
+    playPowerUpSound(); 
 }
 
 function resetPowerUps() {

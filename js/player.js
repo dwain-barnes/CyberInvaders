@@ -6,6 +6,26 @@ const POWER_UP_DURATION = 5000;
 
 let shieldPulse = 0;
 let antennaGlow = 0;
+let shootSound;
+
+function initAudio() {
+    shootSound = new Audio('audio/single-fire.mp3');
+    powerUpSound = new Audio('audio/shield.mp3');
+}
+
+function playShootSound() {
+    if (shootSound) {
+        shootSound.currentTime = 0; // Reset the audio to the beginning
+        shootSound.play().catch(error => console.error('Error playing sound:', error));
+    }
+}
+
+function playPowerUpSound() {
+    if (powerUpSound) {
+        powerUpSound.currentTime = 0; // Reset the audio to the beginning
+        powerUpSound.play().catch(error => console.error('Error playing power-up sound:', error));
+    }
+}
 
 function initializePlayer() {
     player = {
@@ -81,8 +101,6 @@ function drawPlayer() {
         ctx.arc(centerX, centerY, width * 0.75, 0, Math.PI * 2);
         ctx.fill();
     }
-
-
 }
 
 function movePlayer(direction) {
@@ -107,6 +125,7 @@ function shoot() {
     } else {
         bullets.push({ x: player.x, y: player.y, speed: bulletSpeed, color: bulletColor, size: bulletSize });
     }
+    playShootSound();
 }
 
 function resetPlayer() {
@@ -122,7 +141,6 @@ function updatePlayer() {
         isPoweredUp = false;
     }
 }
-
 
 function updateLivesDisplay() {
     const livesElement = document.getElementById('livesValue');
@@ -153,3 +171,6 @@ window.resetPlayer = resetPlayer;
 window.updatePlayer = updatePlayer;
 window.playerHit = playerHit;
 window.updateLivesDisplay = updateLivesDisplay;
+window.playPowerUpSound = playPowerUpSound;
+
+initAudio();

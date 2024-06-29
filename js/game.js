@@ -7,7 +7,7 @@ const bullets = [];
 let preLevelScreen, continueButton, endButton, questionElement, answerButtons;
 let currentQuestion, correctAnswer;
 let gamePaused = false;
-
+let backgroundMusic
 
 function initializeGame() {
     canvas = document.getElementById('gameCanvas');
@@ -19,6 +19,8 @@ function initializeGame() {
     startScreen = document.getElementById('startScreen');
     startButton = document.getElementById('startButton');
     gameInfo = document.getElementById('gameInfo');
+    backgroundMusic = document.getElementById('backgroundAudio');
+    backgroundMusic.volume = 0.5; // Set volume to 50%, adjust as needed
 
     canvas.width = 800;
     canvas.height = 600;
@@ -400,6 +402,7 @@ function startGame() {
     gameInfo.style.display = 'block';
     resetGame();
     showPreLevelScreen(); // Show the pre-level screen immediately
+    backgroundMusic.play();
 }
 
 function togglePause() {
@@ -468,6 +471,8 @@ function endGame(message) {
 
     // Adjust font sizes based on canvas size
     adjustEndGameFontSizes();
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
 }
 
 // Add this function to adjust font sizes for the end game message
@@ -510,7 +515,13 @@ function showStartScreen() {
     updateScore(0);
 }
 
-
+function toggleMusic() {
+    if (backgroundMusic.paused) {
+        backgroundMusic.play();
+    } else {
+        backgroundMusic.pause();
+    }
+}
 
 function showLevelMessage(message) {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
@@ -527,6 +538,7 @@ function showLevelMessage(message) {
 }
 
 function checkCollisions() {
+    const explosionAudio = document.getElementById('explosionAudio');
     for (let i = enemies.length - 1; i >= 0; i--) {
         for (let j = bullets.length - 1; j >= 0; j--) {
             if (
@@ -539,11 +551,13 @@ function checkCollisions() {
                     hackerHealth--;
                     if (hackerHealth <= 0) {
                         enemies.splice(i, 1);
+                        explosionAudio.play();
                         endGame('Congratulations! You\'ve defeated the Master Hacker and saved the digital world!');
                         return; // Exit the function to prevent further processing
                     }
                 } else {
                     enemies.splice(i, 1);
+                    explosionAudio.play(); 
                 }
                 bullets.splice(j, 1);
                 score += 10;
