@@ -12,7 +12,7 @@ CyberInvaders is a Space Invaders style game designed to help educate people abo
 ## Introduction
 CyberInvaders is an educational game that combines the classic mechanics of Space Invaders with cyber security concepts. Players will defend against various cyber threats, learning how to recognize and mitigate them.
 
-![CyberInvader Game Screenshot](img/screenshot.jpg)
+![CyberInvader Game Screenshot](img/screenshot.JPG)
 
 ## Features
 - Classic Space Invaders gameplay
