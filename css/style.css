@@ -1,0 +1,276 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000033;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #00FFFF;
+}
+
+.game-area {
+    position: relative;
+}
+
+.game-container {
+    width: 800px;
+    height: 600px;
+    border: 2px solid #00FFFF;
+    box-shadow: 0 0 10px #00FFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: rgba(0, 0, 51, 0.8);
+}
+
+#startScreen {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00FFFF;
+    max-width: 80%;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px #00FFFF;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+button {
+    background-color: #00FFFF;
+    color: #000033;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #000033;
+    color: #00FFFF;
+    box-shadow: 0 0 10px #00FFFF;
+}
+
+#gameCanvas {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#gameInfo {
+    display: none;
+    position: absolute;
+    top: -35px; /* Adjusted to account for the border width */
+    left: 0;
+    width: 799px; /* Adjusted to account for the border width */
+    text-align: left;
+    font-size: 18px;
+    padding: 5px 0;
+    background-color: rgba(0, 0, 51, 0.8);
+    border: 2px solid #00FFFF;
+    border-bottom: none;
+    box-shadow: 0 -5px 10px #00FFFF;
+}
+
+#score, #lives {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#gameMessage {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 51, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 0 0 10px #00FFFF;
+}
+
+#finalScore {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+
+#howToPlay {
+    display: none;
+    text-align: left;
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 51, 0.9);
+    color: #00FFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00FFFF;
+}
+
+#howToPlay.visible {
+    display: block;
+}
+
+#howToPlay h2 {
+    text-align: center;
+    color: #FFFF00;
+    margin-bottom: 15px;
+}
+
+#howToPlay ul, #howToPlay ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+#howToPlay li {
+    margin-bottom: 10px;
+}
+
+#howToPlay img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+
+
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+#scoreValue, #livesValue {
+    display: inline-block;
+}
+
+#scoreValue.animate {
+    animation: pulse 0.5s ease-in-out;
+}
+
+#livesValue.animate {
+    animation: shake 0.5s ease-in-out;
+}
+
+#preLevelScreen {
+    font-family: Arial, sans-serif;
+}
+
+#preLevelScreen h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #FFFF00;
+}
+
+#preLevelScreen h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #FFFF00;
+}
+
+#preLevelScreen p, #preLevelScreen li {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+#preLevelScreen ul {
+    padding-left: 20px;
+}
+
+#questionSection {
+    margin-top: 20px;
+    background-color: rgba(0, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#answerButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#answerButtons button, #preLevelScreen > button {
+    background-color: #00FFFF;
+    color: #000033;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#answerButtons button:hover, #preLevelScreen > button:hover {
+    background-color: #000033;
+    color: #00FFFF;
+    box-shadow: 0 0 10px #00FFFF;
+}
+
+#answerButtons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#preLevelScreen > button {
+    margin-top: 20px;
+}
+
+#endGameMessage {
+    font-family: Arial, sans-serif;
+}
+
+#endGameMessage h2 {
+    color: #FFFF00;
+    margin-bottom: 20px;
+}
+
+#endGameMessage p {
+    margin-bottom: 30px;
+}
+
+#restartButton {
+    background-color: #00FFFF;
+    color: #000033;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#restartButton:hover {
+    background-color: #000033;
+    color: #00FFFF;
+    box-shadow: 0 0 10px #00FFFF;
+}
