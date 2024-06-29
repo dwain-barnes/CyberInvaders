@@ -183,7 +183,7 @@ function drawSpyware(x, y, width, height, blinkTimer) {
 
 function drawMalware(x, y, width, height, glitchTimer) {
     // Main body
-    ctx.fillStyle = '#330000'; // Dark red
+    ctx.fillStyle = '#FFFFFF';
     ctx.fillRect(x, y, width, height);
 
     // Glitch effect
